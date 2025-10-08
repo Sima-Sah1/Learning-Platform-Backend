@@ -1,8 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-
-  "module": "commonjs",                               
+  "type": "commonjs",                         
   "description": "",
   "main": "index.js",
   "scripts": {
