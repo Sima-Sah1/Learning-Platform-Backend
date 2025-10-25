@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import sequelize from "../../database/connection"
-import generateRandomInstituteNumber from "../../services/generateRandominstituteNumber"
+import generateRandomInstituteNumber from "../../services/generateRandomInstituteNumber"
 
 
 
@@ -39,5 +39,9 @@ class InstituteController {
         })
 
     }
+
+    //const createTeacherTable = async(req:Request,res:Response)=>{
+
+   // }
 }
 export default InstituteController
