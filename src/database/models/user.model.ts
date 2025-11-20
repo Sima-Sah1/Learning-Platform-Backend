@@ -19,6 +19,7 @@ class User extends Model{
     @Column({
         type : DataType.STRING
     })
+    
     declare username : string
 
     @Column({
@@ -36,6 +37,11 @@ class User extends Model{
         defaultValue : 'student'
     })
     declare role:string
+
+    @Column({
+        type : DataType.STRING
+    })
+    declare currentInstituteNumber : string
 
 }
 

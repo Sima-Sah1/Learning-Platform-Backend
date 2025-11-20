@@ -1,7 +1,10 @@
 import express, { Router } from "express"
-import InstituteController from "../../controller/institute/instituteController"
+import isLoggedIn from "../../middleware/middleware"
+import { createInstitute,createTeacherTable,createStudentTable,createCourseTable } from "../../controller/institute/instituteController"
+import asyncErrorHandler from "../../services/asyncErrorHandler"
+
 
 const router:Router = express.Router()
 
-router.route("/").post(InstituteController.createInstitute)
- export default router
+router.route("/").post(isLoggedIn,asyncErrorHandler(createInstitute) , asyncErrorHandler(createTeacherTable), asyncErrorHandler(createStudentTable), asyncErrorHandler(createCourseTable))
+export default router
