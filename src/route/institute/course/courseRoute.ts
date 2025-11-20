@@ -3,9 +3,12 @@ import isLoggedIn from "../../../middleware/middleware";
 import asyncErrorHandler from "../../../services/asyncErrorHandler";
 import {createCourseTable, deleteCourse, getAllCourse, getSingleCourse } from "../../../controller/institute/course/courseController";
 
-import{multer,storage} from "../../../middleware/multerMiddlerware"
+// import{multer,storage} from "../../../middleware/multerMiddlerware"
+// const upload = multer({storage : storage})
 
-const upload = multer({storage : storage})
+import {cloudinary,storage} from '../../../services/cloudinaryConfig'
+import multer from "multer";
+const upload = multer({storage:storage})
 const router : Router = express.Router()
 
 //fieldname -- frontend/postman bata chai k name aairaxa.file vanne kura

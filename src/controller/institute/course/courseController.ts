@@ -14,6 +14,7 @@ const createCourseTable = async(req:IExtendedRequest , res:Response)=>{
     }
 
 const courseThumbnail = req.file ? req.file.path : null;
+console.log(courseThumbnail,"coursethumbnail")
 
 const returneData = await sequelize.query(`INSERT INTO course_${instituteNumber}(coursePrice,courseName,
    courseDescription,courseDuration,courseLevel,courseThumbnail) VALUE(?,?,?,?,?,?)`,{
