@@ -52,14 +52,13 @@ const deleteCourse = async(req:IExtendedRequest, res:Response)=>{
     }
 
 const getAllCourse = async(req:IExtendedRequest,res:Response)=>{
-    const instituteNumber = req.user?.currentInstituteNumber;
-    const courseId= req.params.id
-    const courses = await sequelize.query(`SELECT * FROM course_${instituteNumber} where id = ?`,{
-        replacements :[courseId]
-    })
+     const instituteNumber = req.user?.currentInstituteNumber;
+     const datas = await sequelize.query(`SHOW TABLES LIKE 'course_%':`)
+    const courses = await sequelize.query(`SELECT * FROM course_${instituteNumber}`)  
     res.status(200).json({
         message : "Courses fetched",
-        data : courses
+        data : courses,
+        datas
     })
 }
 

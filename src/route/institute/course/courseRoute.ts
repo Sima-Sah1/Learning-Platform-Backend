@@ -8,14 +8,31 @@ import {createCourseTable, deleteCourse, getAllCourse, getSingleCourse } from ".
 
 import {cloudinary,storage} from '../../../services/cloudinaryConfig'
 import multer from "multer";
-const upload = multer({storage:storage})
+const upload = multer({storage:storage,
+
+fileFilter : (req:Request,file:Express.Multer.File,cb)=>{
+    const allowedFileTypes = ['image/png','image/jpeg','image/jpg']
+    if(allowedFileTypes.includes(file.mimetype)){
+        cb(null,true)
+    }else{
+        cb(new Error("Only image support garxa haii !"))
+    }
+},
+limits : {
+    fileSize : 4 * 1024 * 1024 //2mb
+}
+
+})
+
+
+
 const router : Router = express.Router()
 
 //fieldname -- frontend/postman bata chai k name aairaxa.file vanne kura
 router.route("/")
 .post(isLoggedIn,upload.single("courseThumbnail"),
  asyncErrorHandler(createCourseTable))
-.get(asyncErrorHandler(getAllCourse))
+.get(isLoggedIn,asyncErrorHandler(getAllCourse))
 
 router.route("/:id")
 .get(asyncErrorHandler(getSingleCourse))
