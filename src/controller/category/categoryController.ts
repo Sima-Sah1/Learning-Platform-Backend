@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { IExtendedRequest } from "../../../middleware/type";
-import sequelize from "../../../database/connection";
+import { IExtendedRequest } from "../../middleware/type";
+import sequelize from "../../database/connection";
 
 
 
