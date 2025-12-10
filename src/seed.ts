@@ -1,4 +1,4 @@
-const categorys = [
+const categories = [
 
     {
         categoryName : "web_development",
@@ -6,7 +6,7 @@ const categorys = [
     },
     {
         categoryName : "App_development",
-        categoryDescriptiop : "app development is related to app .."
+        categoryDescription : "app development is related to app .."
     }
 ]
-export default categorys
+export default categories;

@@ -2,27 +2,10 @@ import express , {Request,Router } from "express";
 import isLoggedIn from "../../../middleware/middleware";
 import asyncErrorHandler from "../../../services/asyncErrorHandler";
 import {createCourseTable, deleteCourse, getAllCourse, getSingleCourse } from "../../../controller/institute/course/courseController";
+import upload from "../../../middleware/multerUpload";
 
 // import{multer,storage} from "../../../middleware/multerMiddlerware"
-// const upload = multer({storage : storage})
 
-import {cloudinary,storage} from '../../../services/cloudinaryConfig'
-import multer from "multer";
-const upload = multer({storage:storage,
-
-fileFilter : (req:Request,file:Express.Multer.File,cb)=>{
-    const allowedFileTypes = ['image/png','image/jpeg','image/jpg']
-    if(allowedFileTypes.includes(file.mimetype)){
-        cb(null,true)
-    }else{
-        cb(new Error("Only image support garxa haii !"))
-    }
-},
-limits : {
-    fileSize : 4 * 1024 * 1024 //2mb
-}
-
-})
 
 
 

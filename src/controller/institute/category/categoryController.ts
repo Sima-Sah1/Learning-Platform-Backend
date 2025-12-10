@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-import { IExtendedRequest } from "../../middleware/type";
-import sequelize from "../../database/connection";
+import { IExtendedRequest } from "../../../middleware/type";
+import sequelize from "../../../database/connection";
+import { QueryTypes } from "sequelize";
 
 
 
@@ -15,6 +16,7 @@ const createCategory = async(req:IExtendedRequest,res:Response)=>{
     }
     await sequelize.query(`INSERT INTO category_${instituteNumber}(categoryName,
         categoryDescription) VALUES(?,?)`,{
+            type : QueryTypes.INSERT,
             replacements : [categoryName,categoryDescription]
         })
         res.status(200).json({
@@ -25,7 +27,10 @@ const createCategory = async(req:IExtendedRequest,res:Response)=>{
 
 const getCategories = async(req:IExtendedRequest,res:Response)=>{
     const instituteNumber = req.user?.currentInstituteNumber
-    const categories = await sequelize.query(`SELECT * FROM category_${instituteNumber}`)
+    const categories = await sequelize.query(`SELECT * FROM category_${instituteNumber}`,{
+        // type ma hami kasto type ko operation garnu vako ho tyo dinu paryo
+        type : QueryTypes.SELECT
+    })
     res.status(200).json({
         message : "Categories fetched successfully",
         data : categories
@@ -36,6 +41,7 @@ const delateCategory = async(req:IExtendedRequest,res:Response)=>{
     const instituteNumber = req.user?.currentInstituteNumber
     const id = req.params.id
     await sequelize.query(`DELETE FROM category_${instituteNumber} WHERE id = ?`,{
+        type : QueryTypes.DELETE,
         replacements : [id]
     })
     res.status(200).json({

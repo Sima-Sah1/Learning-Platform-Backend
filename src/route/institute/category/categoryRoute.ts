@@ -3,7 +3,7 @@
 import express, {Router} from 'express'
 import isLoggedIn from '../../../middleware/middleware'
 import asyncErrorHandler from '../../../services/asyncErrorHandler'
-import { createCategory, delateCategory, getCategories } from '../../../controller/category/categoryController'
+import { createCategory, delateCategory, getCategories } from '../../../controller/institute/category/categoryController'
 
 
 
